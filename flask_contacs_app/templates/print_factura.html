@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            Factura #{{ factura[0] }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Usuario: {{ factura[1] }}</h5>
+            <p class="card-text">Fecha: {{ factura[2] }}</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Precio Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for detalle in detalles %}
+                    <tr>
+                        <td>{{ detalle[0] }}</td>
+                        <td>{{ detalle[1] }}</td>
+                        <td>{{ detalle[2] }}</td>
+                        <td>{{ detalle[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3" class="text-end">Total a Pagar:</td>
+                        <td>{{ total }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="#" onclick="printPage()"  class="btn btn-primary">Descargar PDF</a>
+        </div>
+    </div>
+</div>
+<script>
+    function printPage() {
+        window.print();
+    }
+</script>
+
+{% endblock %}

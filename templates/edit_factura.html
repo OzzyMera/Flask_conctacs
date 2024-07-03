@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            Editar Factura
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('update_factura', id=factura[0]) }}" method="POST">
+                <div class="mb-3">
+                    <label for="usuario_id" class="form-label">Usuario</label>
+                    <select class="form-control" name="usuario_id" required>
+                        {% for usuario in usuarios %}
+                        <option value="{{ usuario[0] }}" {% if usuario[0]==factura[1] %}selected{% endif %}>
+                            {{ usuario[1] }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="producto_id" class="form-label">Producto</label>
+                    <select class="form-control" name="producto_id" required>
+                        {% for producto in productos %}
+                        <option value="{{ producto[0] }}" {% if producto[0] == factura[1] %}selected{% endif %}>
+                            {{ producto[1] }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="cantidad" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" name="cantidad" value="{{ factura[2] }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" name="fecha" value="{{ factura[3] }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

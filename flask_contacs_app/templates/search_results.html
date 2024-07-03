@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+{% block body %}
+<div class="container mt-4">
+    <h2>Resultados de la Búsqueda</h2>
+    {% if category == 'usuarios' %}
+    <h3>Usuarios</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in results %}
+            <tr>
+                <td>{{ usuario[0] }}</td>
+                <td>{{ usuario[1] }}</td>
+                <td>{{ usuario[2] }}</td>
+                <td>{{ usuario[3] }}</td>
+                <td>
+                    <a href="/edit_usuario/{{ usuario[0] }}" class="btn btn-primary">Editar</a>
+                    <a href="/delete_usuario/{{ usuario[0] }}" class="btn btn-danger btn-delete">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% elif category == 'productos' %}
+    <h3>Productos</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Codigo Unico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in results %}
+            <tr>
+                <td>{{ producto[0] }}</td>
+                <td>{{ producto[1] }}</td>
+                <td>{{ producto[2] }}</td>
+                <td>{{ producto[3] }}</td>
+                <td>{{ producto[4] }}</td>
+                <td>
+                    <a href="/edit_producto/{{ producto[0] }}" class="btn btn-primary">Editar</a>
+                    <a href="/delete_producto/{{ producto[0] }}" class="btn btn-danger btn-delete">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% elif category == 'facturas' %}
+    <h3>Facturas</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for factura in results %}
+            <tr>
+                <td>{{ factura[0] }}</td>
+                <td>{{ factura[1] }}</td>
+                <td>{{ factura[2] }}</td>
+                <td>{{ factura[3] }}</td>
+                <td>{{ factura[4] }}</td>
+                <td>
+                    <a href="/edit_factura/{{ factura[0] }}" class="btn btn-primary">Editar</a>
+                    <a href="/delete_factura/{{ factura[0] }}" class="btn btn-danger btn-delete">Eliminar</a>
+                    <a href="/print_factura/{{ factura[0] }}" class="btn btn-info">Imprimir Factura</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <a href="/" class="btn btn-primary">Volver</a>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% block body %}
+    <div class="container">
+        <h1>Reporte de Productos</h1>
+        <div class="row mt-4">
+        <div class="col-md-12">            
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Codigo Unico</th>
+                            <th>Cantidad Disponible</th>
+                                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                        <tr>
+                            <td>{{ producto[0] }}</td>
+                            <td>{{ producto[1] }}</td>
+                            <td>{{ producto[2] }}</td>
+                            <td>{{ producto[3] }}</td>
+                            <td>{{ producto[4] }}</td>
+                            <td>{{ producto[5] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            
+        </div>
+    </div>
+        <button onclick="window.print()" class="btn btn-info" >Descargar PDF</button>
+    </div>
+
+
+ {% endblock %}
